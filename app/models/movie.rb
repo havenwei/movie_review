@@ -7,4 +7,6 @@ class Movie < ApplicationRecord
   has_many :members, through: :movie_relationships, source: :user
 
   mount_uploader :image, ImageUploader
+
+  scope :latest, -> {order("updated_at DESC")}
 end

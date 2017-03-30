@@ -6,15 +6,15 @@
       <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="4000">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
-              <% if !@movies.last.nil? %>
+              <% if !@movies.first.nil? %>
               <div class="item active">
                   <div class="container-fluid">
                       <div class="row">
                         <a href="<%= movie_path(@movies.last) %>">
-                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.last.image_url(:medium).to_s %></div>
+                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.first.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
-                              <h2 class="text-right"><%= @movies.last.title%></h2>
-                              <p><%= simple_format(@movies.last.description) %></p>
+                              <h2 class="text-right"><%= @movies.first.title%></h2>
+                              <p><%= simple_format(@movies.first.description) %></p>
                           </div>
                         </a>
                       </div>
@@ -22,15 +22,15 @@
               </div>
               <% end %>
 
-              <% if !@movies.second_to_last.nil? %>
+              <% if !@movies.second.nil? %>
               <div class="item">
                   <div class="container-fluid">
                       <div class="row">
                         <a href="<%= movie_path(@movies.second_to_last) %>">
-                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.second_to_last.image_url(:medium).to_s %></div>
+                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.second.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
-                              <h2 class="text-right"><%= @movies.second_to_last.title%></h2>
-                              <p><%= simple_format(@movies.second_to_last.description) %></p>
+                              <h2 class="text-right"><%= @movies.second.title%></h2>
+                              <p><%= simple_format(@movies.second.description) %></p>
                           </div>
                         </a>
                       </div>
@@ -38,15 +38,15 @@
               </div>
               <% end %>
 
-              <% if !@movies.third_to_last.nil? %>
+              <% if !@movies.third.nil? %>
               <div class="item">
                   <div class="container-fluid">
                       <div class="row">
                         <a href="<%= movie_path(@movies.third_to_last) %>">
-                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.third_to_last.image_url(:medium).to_s %></div>
+                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.third.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
-                              <h2 class="text-right"><%= simple_format(@movies.third_to_last.title)%></h2>
-                              <p><%= @movies.third_to_last.description %></p>
+                              <h2 class="text-right"><%= simple_format(@movies.third.title)%></h2>
+                              <p><%= @movies.third.description %></p>
                           </div>
                         </a>
                       </div>
