@@ -1,5 +1,5 @@
   <tr>
-    <td>#</td>
+    <td><%= image_tag movie.image_url(:thumb).to_s %></td>
     <td><%= link_to(movie.title, movie_path(movie)) %></td>
     <td><%= render_movie_description(movie) %></td>
     <td><%= movie.user.email %></td>
