@@ -1,25 +1,40 @@
 <div class="col-md-12">
-  <div class="movie">
 
-    <span class="pull-right">
+
+<h1 class="text-center"><%=@movie.title%></h1>
+<hr/>
+
+
+  <div class="group">
+    <span class="pull-left">
+      <div class="thumbnail"><%= image_tag @movie.image_url(:medium).to_s %></div>
+
       <% if current_user && current_user.is_member_of?(@movie) %>
         <label class="label label-success"> 已收藏 </label>
-        <%= link_to("取消收藏", quit_movie_path(@movie), method: :post, class: "btn btn-default") %>
+        <%= link_to("取消收藏", quit_movie_path(@movie), method: :post, class: "btn btn-sm btn-default") %>
       <% else %>
         <label class="label label-warning"> 未收藏 </label>
-        <%= link_to("收藏电影", join_movie_path(@movie), method: :post, class: "btn btn-default") %>
+        <%= link_to("收藏电影", join_movie_path(@movie), method: :post, class: "btn btn-sm btn-default") %>
+      <% end %>
+
+      <%= link_to("Write a Review", new_movie_review_path(@movie), class: "btn btn-sm btn-default") %>
+
+      <% if current_user && current_user == @movie.user %>
+        <%= link_to("Edit", edit_movie_path(@movie), class: "btn btn-sm btn-info")%>
+        <%= link_to("Delete", movie_path(@movie),    class: "btn btn-sm btn-danger",
+              method: :delete, data: { confirm: "Are you sure?" } )%>
       <% end %>
     </span>
 
-    <%= link_to("Write a review", new_movie_review_path(@movie), class: "btn btn-default pull-right") %>
 
-    <% if current_user && current_user == @movie.user %>
-      <%= link_to("Edit", edit_movie_path(@movie), class: "btn btn-primary pull-right") %>
-    <% end %>
+
+    <div class="col-md-7">
+
+      <p><%= render_movie_description(@movie) %></p>
+    </div>
   </div>
-  <h2><%= @movie.title %></h2>
-  <p><%= @movie.description %></p>
 
+</div>
   <table class="table">
     <thead>
       <tr>
