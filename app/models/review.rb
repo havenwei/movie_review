@@ -5,4 +5,5 @@ class Review < ApplicationRecord
   validates :content, presence: true
 
   scope :recent, -> {order("created_at DESC")}
+  scope :latest, -> {order("updated_at DESC")}
 end
