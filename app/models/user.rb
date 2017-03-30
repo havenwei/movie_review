@@ -13,4 +13,12 @@ class User < ApplicationRecord
   def is_member_of?(movie)
     favorite_movies.include?(movie)
   end
+
+  def join!(movie)
+    favorite_movies << movie
+  end
+
+  def quit!(movie)
+    favorite_movies.delete(movie)
+  end
 end
