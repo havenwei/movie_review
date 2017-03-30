@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, :only => [:new, :create]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
 
   def new
     @movie = Movie.find(params[:movie_id])
@@ -21,6 +21,21 @@ class ReviewsController < ApplicationController
       redirect_to movie_path(@movie)
     else
       render :new
+    end
+  end
+
+  def edit
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to account_reviews_path, notice: "Update Success"
+    else
+      render :edit
     end
   end
 
