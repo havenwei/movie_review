@@ -3,7 +3,12 @@ class ReviewsController < ApplicationController
 
   def new
     @movie = Movie.find(params[:movie_id])
-    @review = Review.new
+    if current_user.is_member_of?(@movie)
+      @review = Review.new
+    else
+      redirect_to movie_path(@movie)
+      flash[:warning] = "收藏电影后才能发表影评，请先收藏该电影！"
+    end
   end
 
   def create
