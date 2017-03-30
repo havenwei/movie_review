@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-
+  before_action :find_review_and_check_permission, :only => [:edit, :update, :destroy]
   def new
     @movie = Movie.find(params[:movie_id])
     if current_user.is_member_of?(@movie)
@@ -26,12 +26,10 @@ class ReviewsController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:movie_id])
-    @review = Review.find(params[:id])
   end
 
   def update
     @movie = Movie.find(params[:movie_id])
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to account_reviews_path, notice: "Update Success"
     else
@@ -40,12 +38,19 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
     redirect_to account_reviews_path, alert: "Review deleted"
   end
 
   private
+
+  def find_review_and_check_permission
+    @review = Review.find(params[:id])
+
+    if current_user != @review.user
+      redirect_to root_path, alert: "You have no permission."
+    end
+  end
 
   def review_params
     params.require(:review).permit(:content)
