@@ -1,0 +1,17 @@
+<%= simple_form_for([@movie, @movie.reviews.build]) do |f|%>
+  <% if current_user && current_user.is_member_of?(@movie) %>
+    <div class="field">
+        <%= f.text_area :content, class: "form-control" , placeholder: "Write review here..."%>
+    </div>
+    <div style="margin-top: 10px;">
+      <%= f.submit "Quick comment", class: "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="field">
+        <%= f.text_area :content, class: "form-control" , placeholder: "Please favorite movie first!!!", disabled: "disabled"%>
+    </div>
+    <div style="margin-top: 10px;">
+      <%= f.submit "Quick comment", class: "btn btn-primary" , disabled: "disabled"%>
+    </div>
+  <% end %>
+<% end %>

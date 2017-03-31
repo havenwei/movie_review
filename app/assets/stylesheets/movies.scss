@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#header {
+    background-color:FireBrick;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
 #custom_carousel .item  .top {
     overflow:hidden;
     max-height:300px;

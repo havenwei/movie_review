@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy, :join, :quit]
   before_action :find_movie_and_check_permission , only: [:edit, :update, :destroy]
   def index
     @movies = Movie.all.latest
@@ -46,9 +46,9 @@ class MoviesController < ApplicationController
 
     if !current_user.is_member_of?(@movie)
       current_user.join!(@movie)
-      flash[:notice] = "收藏电影成功！"
-    else
-      flash[:warning] = "你已经收藏过该电影！"
+#      flash[:notice] = "收藏电影成功！"
+#    else
+#      flash[:warning] = "你已经收藏过该电影！"
     end
     redirect_to movie_path(@movie)
   end
@@ -58,9 +58,9 @@ class MoviesController < ApplicationController
 
     if current_user.is_member_of?(@movie)
       current_user.quit!(@movie)
-      flash[:alert] = "已取消收藏！"
-    else
-      flash[:warning] = "你未收藏该电影，怎么取消 XD"
+#      flash[:alert] = "已取消收藏！"
+#    else
+#      flash[:warning] = "你未收藏该电影，怎么取消 XD"
     end
 
     redirect_to movie_path(@movie)

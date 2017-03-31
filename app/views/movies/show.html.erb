@@ -1,10 +1,7 @@
+
 <div class="col-md-12">
-
-
-<h1 class="text-center"><%=@movie.title%></h1>
-<hr/>
-
-
+  <h1 class="text-center"><%=@movie.title%></h1>
+  <hr/>
   <div class="group">
     <span class="pull-left">
       <div class="thumbnail"><%= image_tag @movie.image_url(:medium).to_s %></div>
@@ -26,29 +23,41 @@
       <% end %>
     </span>
 
-
-
     <div class="col-md-7">
-
       <p><%= render_movie_description(@movie) %></p>
     </div>
-  </div>
 
+  </div>
 </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>影评内容</th>
-        <th>发表者</th>
-        <th>发表时间</th>
-      </tr>
-    </thead>
+
+
+<div class="col-md-12" style="margin-top: 30px;">
+
+    <h3 class="review_title">
+      <%= @movie.reviews.count %> reviews
+    </h3>
+    <hr>
+    <div id="review">
+      <%= render "reviews/review" %>
+    </div>
+
+
+  <table class="table" style="margin-top: 30px;">
     <tbody>
       <% @reviews.each do |review| %>
         <tr>
-          <td><%= review.content %></td>
-          <td><%= review.user.email %></td>
-          <td><%= review.created_at %></td>
+          <td>
+            <div class="pull-left">
+              <p><small>Submitted <strong><%= time_ago_in_words(review.created_at) %> ago</strong> by <%= review.user.email %></small></p>
+              <p><%= review.content %></p>
+            </div>
+
+            <div class="btn btn-group btn-default pull-right">
+              <% if review.user == current_user -%>
+                  <%= link_to 'Delete', movie_review_path(@movie, review), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </div>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -57,5 +66,4 @@
   <div class="text-center">
     <%= will_paginate @reviews %>
   </div>
-
 </div>

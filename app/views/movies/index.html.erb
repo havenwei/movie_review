@@ -1,3 +1,7 @@
+<div id="header">
+  <h1>Welcome to my Movie Review</h1>
+</div>
+
 <div class="col-md-12">
 
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -42,8 +46,7 @@
               <div class="item">
                   <div class="container-fluid">
                       <div class="row">
-                        <a href="<%= movie_path(@movies.third) %>">
-                          <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.third.image_url(:medium).to_s %></div>
+                        <a href="<%= movie_path(@movies.third) %>"> <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.third.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
                               <h2 class="text-right"><%= simple_format(@movies.third.title)%></h2>
                               <p><%= @movies.third.description %></p>
@@ -63,15 +66,17 @@
           </div>
       </div>
       <!-- End Carousel -->
-  </div>
+</div>
+
 
 
 <div class="col-md-12">
 
-  <%= link_to("New Movie", new_movie_path, class: "btn btn-primary pull-left")%>
-  </br>
-  <hr/>
-  <div class="row">
-    <%= render :partial => "movie_item", :collection => @movies, :as => :movie %>
-  </div>
+    <%= link_to("New Movie", new_movie_path, class: "btn btn-primary pull-left")%>
+    </br>
+    <hr/>
+    
+    <div class="row">
+      <%= render :partial => "movie_item", :collection => @movies, :as => :movie %>
+    </div>
 </div>
