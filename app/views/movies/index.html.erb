@@ -10,7 +10,7 @@
               <div class="item active">
                   <div class="container-fluid">
                       <div class="row">
-                        <a href="<%= movie_path(@movies.last) %>">
+                        <a href="<%= movie_path(@movies.first) %>">
                           <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.first.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
                               <h2 class="text-right"><%= @movies.first.title%></h2>
@@ -26,7 +26,7 @@
               <div class="item">
                   <div class="container-fluid">
                       <div class="row">
-                        <a href="<%= movie_path(@movies.second_to_last) %>">
+                        <a href="<%= movie_path(@movies.second) %>">
                           <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.second.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
                               <h2 class="text-right"><%= @movies.second.title%></h2>
@@ -42,7 +42,7 @@
               <div class="item">
                   <div class="container-fluid">
                       <div class="row">
-                        <a href="<%= movie_path(@movies.third_to_last) %>">
+                        <a href="<%= movie_path(@movies.third) %>">
                           <div class="top col-md-3 col-xs-6" style="margin-left:60px;"><%= image_tag @movies.third.image_url(:medium).to_s %></div>
                           <div class="content col-md-7 col-xs-12">
                               <h2 class="text-right"><%= simple_format(@movies.third.title)%></h2>

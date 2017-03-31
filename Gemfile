@@ -40,6 +40,8 @@ gem 'devise'
 gem 'will_paginate'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'carrierwave-qiniu'
+gem 'qiniu-rs'
 
 
 group :development, :test do
